@@ -64,9 +64,9 @@ def key_value_list_to_str(data: list[tuple[str, str]], width: int = 80):
   for i, (k, v) in enumerate(data):
     if "\n" in v or len(v) > width:
       val = "--> " + "\n--> ".join(v.split("\n"))
-      d_str += f"* {k}" + ":\n" + f"{val}"
+      d_str += f"* {k}:\n{val}"
     else:
-      d_str += f"* {k + ": " + v}"
+      d_str += f"* {k}: {v}"
     if i < len(data) - 1:
       d_str += "\n"
   return d_str
