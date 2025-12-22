@@ -112,7 +112,9 @@ def generate_player_descriptions(
 
   player_descriptions = []
   for player in player_descriptions_list:
-    player_str = f"{player["name"]}: {player["description"]}"
+    name = player["name"]
+    description = player["description"]
+    player_str = f"{name}: {description}"
     player_descriptions.append(player_str)
 
   return tuple(player_descriptions)
