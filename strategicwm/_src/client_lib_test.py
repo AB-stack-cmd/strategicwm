@@ -25,6 +25,7 @@ class MockResponse:
   def __init__(self, status=None):
     if status:
       self.status = status
+      self.reason = "Mock Reason"
 
 
 class HttpErrorRetriableTest(absltest.TestCase):
@@ -32,11 +33,11 @@ class HttpErrorRetriableTest(absltest.TestCase):
   def test_retriable_error_creation_success(self):
     for status in client_lib.HttpErrorRetriable.retriable_codes:
       mock_resp = MockResponse(status=status)
-      http_error = errors.HttpError(mock_resp, b'error content')
+      http_error = errors.HttpError(mock_resp, b"error content")
       retriable_error = client_lib.HttpErrorRetriable(http_error)
       self.assertEqual(retriable_error.status, status)
       self.assertIn(
-          f'HttpErrorRetriable (Status {status})', str(retriable_error)
+          f"HttpErrorRetriable (Status {status})", str(retriable_error)
       )
 
   def test_retriable_error_creation_fail_non_retriable(self):
@@ -48,22 +49,22 @@ class HttpErrorRetriableTest(absltest.TestCase):
       else:
         break
     mock_resp = MockResponse(status=status)
-    http_error = errors.HttpError(mock_resp, b'error content')
+    http_error = errors.HttpError(mock_resp, b"error content")
     with self.assertRaisesRegex(
         ValueError,
-        'HttpErrorRetriable cannot be created for status'
-        f' {status}',
+        "HttpErrorRetriable cannot be created for status"
+        f" {status}",
     ):
       client_lib.HttpErrorRetriable(http_error)
 
   def test_retriable_error_creation_fail_no_status(self):
     mock_resp = MockResponse()
-    http_error = errors.HttpError(mock_resp, b'error content')
+    http_error = errors.HttpError(mock_resp, b"error content")
     with self.assertRaisesRegex(
         ValueError, "Original error object must have 'resp.status' attribute."
     ):
       client_lib.HttpErrorRetriable(http_error)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
   absltest.main()
