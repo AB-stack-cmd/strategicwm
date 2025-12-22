@@ -14,10 +14,15 @@
 
 """Visualize a game tree using PyVis."""
 
+# pylint: disable=g-import-not-at-top
+
 import re
 
 import bs4
-from google.colab import output
+try:
+  from google.colab import output
+except ImportError:
+  output = None
 from IPython import display as display_html
 import ipywidgets as widgets
 import networkx as nx
@@ -138,8 +143,9 @@ class GameTreeVis:
     soup = bs4.BeautifulSoup(html_content, "html.parser")
 
     # Register BOTH functions with unique names
-    output.register_callback("set_node_selection", self.set_node_selection)
-    output.register_callback("set_path_selection", self.set_path_selection)
+    if output:
+      output.register_callback("set_node_selection", self.set_node_selection)
+      output.register_callback("set_path_selection", self.set_path_selection)
 
     js_modifications = """
     var node_select_ts = null;
@@ -462,7 +468,8 @@ class GameTreeVis:
         "google.colab.output.setIframeHeight(0, true, "
         + f"{{maxHeight: {iframe_height}}})"
     )
-    display_html.display(display_html.Javascript(iframe_height_js))
+    if output:
+      display_html.display(display_html.Javascript(iframe_height_js))
 
   def show_tree(self):
     html_content = self.html_from_nx()
