@@ -22,7 +22,7 @@ from absl.testing import absltest
 
 import networkx as nx
 
-from strategicwm._src import client_lib  # pylint: disable=unused-import
+import strategicwm._src.client_lib  # pylint: disable=unused-import
 from strategicwm._src.se.construction import direct
 
 sample_json_tree = {

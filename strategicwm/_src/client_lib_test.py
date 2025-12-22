@@ -25,7 +25,7 @@ class MockResponse:
   def __init__(self, status=None):
     if status:
       self.status = status
-      self.reason = "Mock Reason"
+    self.reason = "Mock Reason"
 
 
 class HttpErrorRetriableTest(absltest.TestCase):
