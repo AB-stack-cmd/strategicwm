@@ -16,16 +16,17 @@ keywords = []
 # pip dependencies of the project
 # Installed locally with `pip install -e .`
 dependencies = [
-    "open-spiel",
-    "ipython",
     "beautifulsoup4",
     "etils[ecolab]",
     "google-genai",
     "google-api-python-client",
+    "importlib_resources",
+    "ipython",
     "ipywidgets",
     "matplotlib",
     "networkx",
     "numpy",
+    "open-spiel",
     "pydantic",
     "pyvis",
     "retry",
