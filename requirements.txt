@@ -114,7 +114,7 @@ numpy==2.3.5
     #   open-spiel
     #   scipy
     #   strategicwm (pyproject.toml)
-open-spiel==1.6.9
+open-spiel==1.6.10
     # via strategicwm (pyproject.toml)
 packaging==25.0
     # via matplotlib

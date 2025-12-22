@@ -19,7 +19,7 @@ dependencies = [
     "open-spiel",
     "ipython",
     "beautifulsoup4",
-    "etils",
+    "etils[ecolab]",
     "google-genai",
     "google-api-python-client",
     "ipywidgets",
